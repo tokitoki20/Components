@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+      <script src="https://kit.fontawesome.com/662f7178a2.js" crossorigin="anonymous"></script>
+
+    <title>Bootstrap Example</title>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<style type="text/css">
+   .transition {
+      transition: .5s;
+   }
+   .move {
+            animation-name: toleft;
+      animation-duration: 1s;
+      animation-fill-mode: forwards;
+   }
+   .toright {
+            animation-name: toright;
+
+   }
+   .toleft {
+            animation-name: toleft;
+
+   }
+
+   @keyframes toright {
+      0% {
+         transform: translateX(-100%);
+      }
+      100% {
+
+         transform: translateX(0%);
+      }
+   }
+   @keyframes toleft {
+      0% {
+         transform: translateX(0%);
+      }
+      100% {
+
+         transform: translateX(-100%);
+      }
+   }
+   @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;700&display=swap');
+/* color */
+* {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+}
+:root {
+   --backgroundColor:  #0B0B0B;
+   --linearGradient: linear-gradient(to bottom,  #FF6433 , #FF493E);
+   --sideLinearGradient: linear-gradient(to bottom,#0B0B0B , #1C1D18) ;
+   --sideStrokeLinearGradient: linear-gradient(-30deg, #0b0b0b00 0%, #8B90A0 35% , #0b0b0b00 100%) ;
+   --textColor:  #EAEAEA;
+   --notSelected : #8B90A0;
+   --cardBackground: #101010;
+   --searchBackground: #311500;
+   --sixtenPadding: 16px;
+   --sixtenMargin: 16px;
+
+}
+body {
+   background-color: var(--backgroundColor);
+   display: flex;
+    font-family: 'Poppins', sans-serif;
+    /*width: 100vw;*/
+
+}
+
+.but { 
+   height: 46px;
+   width: 46px;
+         outline: none;
+         /*font-size: 30px;*/
+         color: #FF6433 ;
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         border-radius: 10px;
+         cursor: pointer;
+         background-color: transparent;
+         border: 2px solid var(--notSelected);
+ }
+
+</style>
+
+  </head>
+  <body class="p-3 m-0 border-0 bd-example m-0 border-0">
+
+    <!-- Example Code -->
+    
+    <div  style="width: 800px" id="carouselExample" class="carousel slide pointer-event">
+      <div  class="d-flex align-items-center justify-content-between">
+            <a style="color:var(--textColor);" class="fw-bold text-decoration-none" href="Anime/seasonalAnime.html">Season</a>
+            <div style="width: calc((46px * 2) + 16px)" class="d-flex justify-content-between">
+               <button class="but fs-1"  type="button" data-bs-target="#carouselExample" data-bs-slide="prev"><i class="fa-solid fa-angle-left"></i></button>
+               <button class="but fs-1" type="button" data-bs-target="#carouselExample" data-bs-slide="next"><i class="fa-solid fa-angle-right"></i></button>
+            </div>
+</div>
+      <div class="carousel-inner">
+        <div  class="  carousel-item active transition ">
+                  <div class="d-flex justify-content-between gap-3">
+                     <div class="anime" style="width: calc(100% / 4);   ">
+                        <img class="img-fluid h-100" src="">
+                     </div>
+                     <div  class="anime" style="width: calc(100% / 4);  ">
+                        <img class="img-fluid h-100" src="">
+                     </div>
+                     <div class="anime" style="width: calc(100% / 4);   ">
+                        <img class="img-fluid h-100" src="">
+                     </div>
+                     <div class="anime" style="width: calc(100% / 4);  ">
+                        <img class="img-fluid h-100" src="">
+                     </div>  
+                     
+
+                  </div>
+        </div>
+        <div class="carousel-item transition">
+              <div class="d-flex justify-content-between gap-3">
+                    <div class="anime" style="width: calc(100% / 4);  ">
+                        <img class="img-fluid h-100" src="">
+                     </div>
+                     <div  class="anime" style="width: calc(100% / 4);">
+                        <img class="img-fluid h-100" src="">
+                     </div>
+                     <div class="anime" style="width: calc(100% / 4); ">
+                        <img class="img-fluid h-100" src="">
+                     </div>
+                     <div class="anime" style="width: calc(100% / 4); ">
+                        <img class="img-fluid h-100" src="">
+                     </div>  
+                     
+                  </div>
+         </div>
+        
+      </div>
+    </div>
+    
+<script type="text/javascript">
+   async function getData() {
+      let myfetch = await fetch("https://api.jikan.moe/v4/seasons/now")
+      let mydata = await myfetch.json()
+      let myFinal = mydata.data
+      console.log(mydata.data)
+      let myDivs = document.querySelectorAll(".anime")
+         myFinal.forEach((el,i) => {
+               myDivs[i].children[0].src = `${el.images.jpg.image_url}`
+         })
+   }
+   getData()
+
+
+</script>
+
+  </body>
+</html>
+

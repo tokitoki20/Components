@@ -1,0 +1,169 @@
+import { useState, useEffect } from "react";
+import "./styles.css";
+
+function App() {
+  const [anime, setAnime] = useState([]);
+  const [select, setSelect] = useState("1");
+  const getAnimeByCat = async (url) => {
+    let myfetch = await fetch(url);
+    let mydata = await myfetch.json();
+    	mydata.data.length = 5
+    setAnime(mydata.data);
+  };
+
+  const animeCard = (
+    i,
+    imgsrc,
+    animeimg,
+    animetitle,
+    animegenre,
+    animescore
+  ) => {
+    return (
+      <a className="top">
+        <div>{i >= 3 ? <p>{i}</p> : <img src={imgsrc} />}</div>
+        <div className="anime-info">
+          <img src={animeimg} />
+          <div>
+            <p>{animetitle} </p>
+
+            <div>
+              <img src="logos/malLogo.png" />
+              <p>{animescore}</p>
+            </div>
+          </div>
+        </div>
+      </a>
+    );
+  };
+
+  let divsAnime = anime.map((el, i) => {
+    return animeCard(
+      i,
+      "./logos/uno.png",
+      el.images.jpg.small_image_url,
+      el.title,
+      el.genres[0].name,
+      el.score
+    );
+  });
+
+  useEffect(() => {
+    getAnimeByCat("https://api.jikan.moe/v4/seasons/now");
+  }, []);
+  console.log(anime);
+  return (
+    <div className="tops">
+      <div className="select">
+        <select
+          onChange={(e) => {
+            if (e.target.value === "1") {
+              getAnimeByCat("https://api.jikan.moe/v4/seasons/now");
+            } else if (e.target.value === "2") {
+              getAnimeByCat("https://api.jikan.moe/v4/seasons/upcoming");
+            } else if (e.target.value === "3") {
+              getAnimeByCat("https://api.jikan.moe/v4/top/anime");
+            }
+          }}
+          class="select-box form-select"
+          aria-label="Default select example"
+        >
+          <option selected value="1">
+            Top Airing
+          </option>
+          <option value="2">Top Upcoming</option>
+          <option value="3">Favorite</option>
+        </select>
+        <a id="topAnime" href="Anime/topAnime.html">
+          More
+        </a>
+      </div>
+      <div className="top-anime">{divsAnime}</div>
+    </div>
+  );
+}
+
+export default App;
+
+
+
+
+
+
+
+
+
+
+
+
+.tops {
+  height: 100%;
+  width: 393px;
+  /*background-color: RED;*/
+}
+.tops > .select {
+  width: 100%;
+  height: 46px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.tops > .select > .select-box {
+  padding: 8px;
+  display: flex;
+  color: #ff6433;
+  font-weight: bold;
+  align-items: center;
+  cursor: pointer;
+  font-size: 14px;
+  justify-content: space-between;
+  background-color: var(--backgroundColor);
+  outline: none;
+  width: 150px;
+  border: 2px solid #ff6433;
+  position: relative;
+  border-radius: 10px;
+}
+.tops > .select > .select-box > button {
+  color: #ff6433;
+  margin-left: 8px;
+
+  outline: none;
+  border: none;
+  background-color: transparent;
+}
+
+.anime-info > img {
+  width: 65px;
+  height: 90px;
+  margin-right: 16px;
+  border-radius: 10px;
+}
+.anime-info {
+  display: flex;
+  width: calc(100% - 40px - 16px);
+}
+.anime-info > div {
+  color: var(--textColor);
+  font-size: 12px;
+}
+.anime-info > div > p:nth-of-type(1) {
+  font-weight: bold;
+}
+.anime-info > div > p:nth-of-type(2) {
+  color: var(--notSelected);
+}
+.anime-info > div > DIV {
+  margin-top: 16px;
+  display: flex;
+  color: var(--textColor);
+  align-items: center;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.anime-info > div > DIV > img {
+  width: 43px;
+  height: 21px;
+  border-radius: 1px;
+}

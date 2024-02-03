@@ -1,0 +1,30 @@
+
+
+<Route path='/' element ={<Home/>} />
+<Route path='anime/:animeID' element ={<AnimeDetails/>} > 
+		<Route path='characters' element={<AnimeCharacter />} />
+		<Route path='recommendations' element={<AnimeRecommendation />} />
+		<Route path='episodes' element={<AnimeEpisodes />} />
+		<Route path='characters' element={<AnimeCharacters />} />
+		<Route path='reviews' element={<AnimeReviews />} />
+</Route>
+
+<Route path='anime/season' element ={<SeasonalAnime/>} />
+
+<Route path='topAnime' element ={<> <Outlet/> </>} > 
+		<Route path='' element ={<TopAnime/>} />
+		<Route path='airing' element ={<TopAnimeAiring/>} />
+		<Route path='upcoming' element ={<TopAnimeAiring/>} />
+		<Route path='tvseries' element ={<TopAnimeTv/>} />
+		<Route path='movies' element ={<TopAnimeMovies/>} />
+		<Route path='ova' element ={<TopAnimeOVA/>} />
+		<Route path='ona' element ={<TopAnimeONA/>} />
+		<Route path='specials' element ={<TopAnimeSpecial/>} />
+		<Route path='populars' element ={<TopAnimePopular/>} />
+		<Route path='favorites' element ={<TopAnimeFavorite/>} />
+</Route>
+
+
+<Route path='search' element ={<Search/>} />
+<Route path='watch/trailers' element ={<WatchTrailers/>} />
+<Route path='watch/episodes' element ={<WatchEpisodes/>} />

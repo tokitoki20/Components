@@ -1,0 +1,17 @@
+function RightInfo() {
+return (
+<div class="RightInfo">
+		<div class="mediaMenu">
+			<button id="trail" class="ccl">
+				<i class="fa-regular fa-circle-play"></i>
+				<p>Trailers</p>
+			</button>
+			<button id="photos">
+				<i class="fa-regular fa-image"></i>
+				<p>Photos</p>
+			</button>
+		</div>
+		<div class="mediaResult" id="mediaResult"></div>
+	</div>
+)
+}

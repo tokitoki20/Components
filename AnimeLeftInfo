@@ -1,0 +1,77 @@
+function AnimeLeftInfo() {
+  return (
+     <div  class="LeftInfo">
+		<img id="img">
+		<div class="score">
+			<div>
+				<img src="../logos/malLogo.png">
+				<p id="score">N/A</p>
+				<p>score</p>
+			</div>
+			<div>
+				<i class="fa-solid fa-heart"></i>
+				<p id="Popularity">N/A</p>
+				<p>Popularity</p>
+			</div>
+			<div>
+				<i class="fa-solid fa-star"></i>
+				<p id="rank">N/A</p>
+				<p>Ranking</p>
+			</div>
+		</div>
+		<div class="genresDiv">
+			<div>
+				<img src="../logos/premiered.png">
+				<div>
+					<p>Premiered</p>
+					<p id="premiered">N/A</p>
+				</div>
+			</div>
+
+			<div>
+				<img src="../logos/status.png">
+				<div>
+					<p>Status</p>
+					<p id="status">N/A</p>
+				</div>
+			</div>
+
+			<div>
+				<img src="../logos/broadcast.png">
+				<div>
+					<p>Broadcast</p>
+					<p id="broadcast">N/A</p>
+				</div>
+			</div>
+
+			<div>
+				<img src="../logos/broadcast.png">
+				<div>
+					<p>Aired</p>
+					<p id="aired">N/A</p>
+				</div>
+			</div>
+
+			<div>
+				<img src="../logos/demographic.png">
+				<div>
+					<p>Demographic</p>
+					<p id="demographic">-</p>
+				</div>
+			</div>
+
+			<div>
+				<img src="../logos/Rating.png">
+				<div>
+					<p>Rating</p>
+					<p id="rating">N/A</p>
+				</div>
+			</div>
+		</div>
+
+
+	</div>
+
+  )
+
+}

@@ -1,0 +1,29 @@
+function AnimeSite() {
+		
+
+let myAnimeName = ["witanime","animelek","okanime","animesilver","anime4up","gateanime","shahiid-anime","octanime","arabanime","animerco"]
+let myLogos = ["logos/witanime.png","logos/animelek.png","logos/okanime.png","logos/animesilver.png","logos/anime4up.png","logos/gateanime.png","logos/shahiid-anime.png","logos/octanime.png","logos/arabanime.png","logos/animerco.png"]
+let myAnimeSites = ["https://witanime.com", "https://animelek.tv/", "https://okanime.tv/", "https://www.animesilver.net/","https://anime4up.tv/","https://e.gateanime.com/","https://shahiid-anime.net/","https://www.octanime.tv/","https://www.arabanime.net/","https://animerco.org"]
+
+	let animeDivs =	myAnimeSites.map((el,i) => {
+			return (
+								  <div class="mysiteAnime">
+			    <div>
+			      <img src={myLogos[i]}>
+			      <div>
+			        <h3>{myAnimeName[i]} </h3>
+			        <p>العربية</p>
+			      </div>
+			    </div>
+			    <a href={el} target="_blank">View</a>
+			  </div>
+
+				)
+		})
+	return (
+			<div class="animeSites">
+				{animeDivs}
+			</div>
+		)
+}
+

@@ -1,0 +1,62 @@
+import { useState, useEffect } from "react";
+
+export default function App() {
+  let [episodes, setEpisodes] = useState([]);
+  let clicking = (el) => {
+    const myurl = `${el.entry.title} ${el.episodes[0].title}`;
+    console.log(myurl);
+    window.open(
+      `https://witanime.org/${myurl
+        .replaceAll(" ", "-")
+        .replaceAll("Episode", "الحلقة")}`,
+      "_blank"
+    );
+  };
+  let episodesDiv = episodes.map((el) => {
+    return (
+      <div class="episode-parent">
+        <img src={el.entry.images.jpg.large_image_url} />
+        <div class="episodeDiv">
+          <p>{el.entry.title}</p>
+          <p>{el.episodes[0].title}</p>
+          <button
+            onClick={() => {
+              clicking(el);
+            }}
+            id="watch"
+          >
+            Watch Now!
+          </button>
+        </div>
+      </div>
+    );
+  });
+
+  useEffect(() => {
+    fetch("https://api.jikan.moe/v4/watch/episodes")
+      .then((res) => res.json())
+      .then((data) => data.data)
+      .then((data) => setEpisodes(data));
+  }, []);
+
+  return (
+    <div class="episodes">
+      <div class="titles">
+        <a class="sea" href="Anime/seasonalAnime.html">
+          Latest Episodes
+        </a>
+        <div class="buttons">
+          <button class="but" id="left1">
+            <i class="fa-solid fa-angle-left" aria-hidden="true"></i>
+          </button>
+          <button class="but" id="right1">
+            <i class="fa-solid fa-angle-right" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+      <div class="episodes-container">
+        <div class="episodes-list">{episodesDiv}</div>
+      </div>
+    </div>
+  );
+}

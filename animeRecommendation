@@ -1,0 +1,43 @@
+import { useState, useEffect } from "react";
+
+export default function App() {
+  let [recommendation, setRecommendation] = useState([]);
+  useEffect(() => {
+    fetch("https://api.jikan.moe/v4/recommendations/anime")
+      .then((res) => res.json())
+      .then((data) => setRecommendation(data.data));
+  }, []);
+  let recommendationDivs = recommendation.map((el) => {
+    return (
+      <div class="Recommendations">
+        <div>
+          <img src={el.entry[0].images.jpg.large_image_url} />
+          <img src={el.entry[1].images.jpg.large_image_url} />
+        </div>
+        <button id="show">Read Reason </button>
+        <p>{el.content}</p>
+      </div>
+    );
+  });
+  return (
+    <>
+      <div class="rightCon">
+        <div class="titles">
+          <a href="">Recommendations</a>
+          <div class="buttons">
+            <button class="but" id="left3">
+              <i class="fa-solid fa-angle-left" aria-hidden="true"></i>
+            </button>
+            <button class="but" id="right3">
+              <i class="fa-solid fa-angle-right" aria-hidden="true"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="RecommendationsParentX">
+          <div class="RecommendationsParent">{recommendationDivs}</div>
+        </div>
+      </div>
+    </>
+  );
+}

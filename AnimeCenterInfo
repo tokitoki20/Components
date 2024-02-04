@@ -1,0 +1,49 @@
+function AnimeCenterInfo() {
+  return (
+     <div class="centerInfo">
+		<div class="topMenu">
+			<h3 id="title">Anime Title</h3>
+			<div class="animeMenu">
+				<button class="bb clicked" id="information">
+					<i class="fa-solid fa-circle-info"></i>
+					<p> Overview</p>
+				</button>
+
+				<button class="bb" id="franchise">
+					<i class="fa-solid fa-book"></i>
+					<p> Franchise</p>
+				</button>
+				<button class="bb" id="characters">
+					<i class="fa-solid fa-users"></i>
+					<p>Characters</p>
+				</button>
+				<button class="bb" id="episode">
+					<i class="fa-solid fa-circle-play"></i>
+					<p>Episodes Guides</p>
+				</button>
+				<button class="bb" id="review">
+					<i class="fa-solid fa-square-pen"></i>
+					<p>Review</p>
+				</button>
+				<button class="bb" id="recommendations">
+					<i class="fa-solid fa-thumbs-up"></i>
+					<p>Recommendation</p>
+				</button>
+			</div>
+		</div>
+
+		<div class="MenuResult">
+			<!-- <div class="sourceMenu">
+				<button class="cllicked">
+					All
+				</button>
+				<button class="cllicked">
+					All
+				</button>
+			</div> -->
+		</div>
+
+	</div>
+  )
+
+}

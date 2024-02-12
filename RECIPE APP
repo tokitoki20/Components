@@ -1,0 +1,177 @@
+
+Routes 
+
+
+<BrowserRouter>
+	<Routes> 
+			<Route path="/" element ={<HomePage />} />
+			<Route path="category" element ={<Category />} >
+					<Route path="breakfast" element ={<Breakfast />} />
+					<Route path="lunch" element ={<Lunch />} />
+					<Route path="dinner" element ={<Dinner />} />
+					<Route path="snacks" element ={<Snacks />} />
+					<Route path="dessert" element ={<Desserts />} />
+					<Route path="drinks" element ={<Drinks />} />
+					<Route path="soups" element ={<Soups />} />
+					<Route path="salad" element ={<Salads />} />
+					<Route path="sauces" element ={<Sauces />} />
+					<Route path="baking" element ={<Baking />} />
+					<Route path="seafood" element ={<Seafood />} />
+			 </Route>
+			 <Route  path=":RecipeID" element= {<> <Outlet /> </>} > 
+			 	<Route path ="" element= {<RecipeDetails />} />
+			 	<Route path ="edit" element= {<RecipeEdit />} />
+			 <Route/>
+			 <Route path="/add" element={<AddRecipe/>} />
+	</Routes>
+</BrowserRouter>	
+
+------------------------------------------------------------------------------------------------
+
+Navbar
+
+function RecipeNavBar() {
+	return (
+		<nav>
+				<div> 
+					<H2>MAMACHEF</H2>
+					<div>
+							<Link to='/' >Recipes</Link>
+							<Link to='recipes' >Categories</Link>
+							<Link to='add' >Add Recipe</Link>
+					</div>
+				</div>
+		 </nav>
+	)
+}
+
+------------------------------------------------------------------------------------------------
+
+All recipes
+
+function AllRecipes() {
+	const [recipes,setRecipes] = useState([])
+	useEffect(() => {
+				fetch('localhost:9000/recipes')
+					.then((res) => res.json())
+					.then((data) => setRecipes(data))
+	}, [])
+
+			const getAllRecipes = recipes.map((el) => {
+						<Link to={el.id} class="mim" href="recipe-tuto.php?id=1">
+					        <div class="aa"> 
+					            <img src={el.img} >
+					            <p>Mom special recipe</p>
+					            <p>{el.title}</p>
+					        </div>
+					        <div class="bb">
+					            <div class="diff gr"> 
+					                <p>Difficulty </p>
+					                <p><i class="fa-solid fa-signal" aria-hidden="true"></i>{el.difficulty}</p>
+					            </div>
+					            <div> 
+					                <p>Time </p>
+					                <p><i class="fa-regular fa-clock" aria-hidden="true"></i>{el.time}</p>
+					            </div>
+					        </div>
+					    </Link>
+			})
+
+	return (
+
+		<div> 
+				{getAllRecipes}
+		</div>
+
+	)
+}
+------------------------------------------------------------------------------------------------
+
+function HomePage() {
+	return (
+		<div>
+			<RecipeNavBar />
+			<AllRecipes />
+
+		</div>
+	)
+}
+------------------------------------------------------------------------------------------------
+
+component button list of category
+
+function CategoriesButtons(props) {
+	const getRecipes = () => {
+		fetch('localhost:9000')
+			.then((res) => res.json())
+			.then((data) => setRecipes(data))
+
+	}
+	const getallrecipes = (recipes) => {
+				recipes.map((el) => {
+						<Link to={el.id} class="mim" href="recipe-tuto.php?id=1">
+					        <div class="aa"> 
+					            <img src={el.img} >
+					            <p>Mom special recipe</p>
+					            <p>{el.title}</p>
+					        </div>
+					        <div class="bb">
+					            <div class="diff gr"> 
+					                <p>Difficulty </p>
+					                <p><i class="fa-solid fa-signal" aria-hidden="true"></i>{el.difficulty}</p>
+					            </div>
+					            <div> 
+					                <p>Time </p>
+					                <p><i class="fa-regular fa-clock" aria-hidden="true"></i>{el.time}</p>
+					            </div>
+					        </div>
+					    </Link>
+			})
+	}
+	const filtering = (category) => {
+			let myRecipesFiltered = recipe.filter((el) => {
+				return el.category.find(category)
+			})
+	}
+	return (
+			<>
+			<div class="All-Categories">
+				<Link onClick=(() => getallrecipes(recipes))  to="category" class="li-clicked"><i class="fa-solid fa-utensils" aria-hidden="true"></i>All</Link>
+				<Link  onClick=(() =>  {
+					filtering('breakfast')
+					getallrecipes(filtering)
+
+				}) to="category/breaskfast" ><i class="fa-solid fa-mug-saucer" aria-hidden="true"></i>Breakfast</Link>
+				<Link to="category/lunch" ><i class="fa-solid fa-burger" aria-hidden="true"></i>Lunch</Link>
+				<Link to="category/dinner"><i class="fa-solid fa-utensils" aria-hidden="true"></i>Dinner</Link>
+				<Link to="category/snacks"><i class="fa-solid fa-ice-cream" aria-hidden="true"></i>Snacks</Link>
+				<Link to="category/desserts"><i class="fa-solid fa-cake-candles" aria-hidden="true"></i>Desserts</Link>
+				<Link to="category/drinks"><i class="fa-solid fa-mug-saucer" aria-hidden="true"></i>Drinks</Link>
+				<Link to="category/soups"><i class="fa-solid fa-bowl-rice" aria-hidden="true"></i>Soups</Link>
+				<Link to="category/salads"><i class="fa-solid fa-apple-whole" aria-hidden="true"></i>Salads</Link>
+				<Link to="category/sauces"><i class="fa-solid fa-burger" aria-hidden="true"></i>Sauces</Link>
+				<Link to="category/baking"><i class="fa-solid fa-bread-slice" aria-hidden="true"></i>Baking</Link>
+				<Link to="category/seafood"><i class="fa-solid fa-fish" aria-hidden="true"></i>Seafood</Link>
+			</div>
+			<Outlet />
+			</>
+	)
+}
+
+
+------------------------------------------------------------------------------------------------
+
+category pages
+
+function RecipesBasedOnCategory() {
+
+
+	return (
+		<div> 
+			<RecipesNavBar  />
+			<div> 
+				<CategoriesButtons />
+			</div>
+		</div>
+	)
+}
